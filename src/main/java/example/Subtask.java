@@ -1,4 +1,4 @@
 package example;
 
-public class Subtask {
+public class Subtask extends Task {
 }
