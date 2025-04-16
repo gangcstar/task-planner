@@ -11,7 +11,7 @@ public class Epic extends Task {
         this.subTaskIds = new ArrayList<>();
     }
 
-    public List<Integer> getSubTaskIds() {return subTaskIds}
+    public List<Integer> getSubTaskIds() {return subTaskIds;}
 
     public void addSubTaskId(int subTaskId) {
         subTaskIds.add(subTaskId);
@@ -21,6 +21,14 @@ public class Epic extends Task {
         subTaskIds.remove(Integer.valueOf(subTaskId));
     }
 
-
+    @Override
+    public String toString() {
+        return "Epic" +
+                "id = " + id +
+                ", name = " + name +
+                ", description = " + description +
+                ", status=" + status +
+                ", subTaskIds = " + subTaskIds;
+    }
 
 }

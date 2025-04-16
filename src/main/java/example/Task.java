@@ -1,10 +1,10 @@
 package example;
 
 public class Task {
-    private int id;
-    private String name;
-    private String description;
-    private Status status;
+    protected int id;
+    protected String name;
+    protected String description;
+    protected Status status;
 
     public Task(int id, String name, String description, Status status) {
         this.id = id;
@@ -13,12 +13,22 @@ public class Task {
         this.status = status;
     }
 
-    public getId() {return id;}
+    public int getId() {return id;}
 
-    public getName() {return name;}
+    public String getName() {return name;}
 
-    public getDescription() {return description;}
+    public String getDescription() {return description;}
 
     public Status getStatus() {return status;}
+
+
+    @Override
+    public String toString() {
+        return "Task" +
+                "id = " + id +
+                ", name = " + name +
+                ", description = " + description +
+                ", status=" + status;
+    }
 
 }
