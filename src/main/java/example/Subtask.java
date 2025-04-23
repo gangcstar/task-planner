@@ -3,12 +3,14 @@ package example;
 public class Subtask extends Task {
     private int epicId;
 
-    public Subtask(int id, String name, String description, Status status, int epicId) {
-        super(id, name, description,status);
+    public Subtask(String name, String description, int epicId) {
+        super(name, description);
         this.epicId = epicId;
     }
 
-    public int getEpicId() {return epicId;}
+    public int getEpicId() {
+        return epicId;
+    }
 
     @Override
     public String toString() {
@@ -16,7 +18,7 @@ public class Subtask extends Task {
                 "id = " + id +
                 ", name = " + name +
                 ", description = " + description +
-                ", status=" + status +
-                ", epicId = " + epicId;
+                ", epicId = " + epicId +
+                ", Status = " + status;
     }
 }

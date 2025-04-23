@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Epic extends Task {
-    private List<Integer> subTaskIds;
+    private List<Integer> subtaskIds = new ArrayList<>();
 
-    public Epic(int id, String name, String description) {
-        super(id, name, description, Status.NEW);
-        this.subTaskIds = new ArrayList<>();
+    public Epic(String name, String description) {
+        super(name, description);
     }
 
-    public List<Integer> getSubTaskIds() {return subTaskIds;}
-
-    public void addSubTaskId(int subTaskId) {
-        subTaskIds.add(subTaskId);
+    public List<Integer> getSubtaskIds() {
+        return subtaskIds;
     }
 
-    public void removeSubTaskId(int subTaskId) {
-        subTaskIds.remove(Integer.valueOf(subTaskId));
+    public void addSubtaskId(int id) {
+        subtaskIds.add(id);
     }
 
+    public void removeSubtasksId(int id) {
+        subtaskIds.remove(Integer.valueOf(id));
+    }
     @Override
     public String toString() {
         return "Epic" +
@@ -28,7 +28,7 @@ public class Epic extends Task {
                 ", name = " + name +
                 ", description = " + description +
                 ", status=" + status +
-                ", subTaskIds = " + subTaskIds;
+                ", subTaskIds = " + subtaskIds;
     }
 
 }
