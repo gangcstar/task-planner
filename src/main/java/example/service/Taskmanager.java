@@ -1,11 +1,16 @@
-package example;
+package example.service;
+
+import example.model.Epic;
+import example.model.Subtask;
+import example.model.Task;
+import example.util.Status;
 
 import java.util.*;
 
 public class Taskmanager {
     private int idTask = 1;
-    private Map<Integer, Task> tasks = new HashMap<>();
-    private Map<Integer,Epic> epics = new HashMap<>();
+    private Map<Integer, Task> tasks = new HashMap<>(); //Map<Integer, T>
+    private Map<Integer, Epic> epics = new HashMap<>();
     private Map<Integer, Subtask> subtasks = new HashMap<>();
 
     private int taskId() {
@@ -13,17 +18,14 @@ public class Taskmanager {
     }
 
     public void addTask(Task task) {
-        task.setId(taskId());
         tasks.put(task.getId(), task);
     }
 
     public void addEpic(Epic epic) {
-        epic.setId(taskId());
         epics.put(epic.getId(), epic);
     }
 
     public void addSubtask(Subtask subtask) {
-        subtask.setId(taskId());
         subtasks.put(subtask.getId(), subtask);
 
         Epic epic = epics.get(subtask.getEpicId());
@@ -77,13 +79,11 @@ public class Taskmanager {
             }
         }
 
-        if (newCount == subtasks.size()) {
+        if (newCount == subtaskIds.size()) {
             epic.setStatus(Status.NEW);
-        }
-        if (doneCount == subtasks.size()) {
+        } else if (doneCount == subtaskIds.size()) {
             epic.setStatus(Status.DONE);
-        }
-        else {
+        } else {
             epic.setStatus(Status.IN_PROGRESS);
         }
 

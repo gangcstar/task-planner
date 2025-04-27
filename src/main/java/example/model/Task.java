@@ -1,4 +1,7 @@
-package example;
+package example.model;
+
+import example.util.Identifier;
+import example.util.Status;
 
 public class Task {
     protected int id;
@@ -7,6 +10,7 @@ public class Task {
     protected Status status;
 
     public Task(String name, String description) {
+        this.id = Identifier.INSTANCE.generate();
         this.name= name;
         this.description = description;
         this.status = Status.NEW;
@@ -14,10 +18,6 @@ public class Task {
 
     public int getId() {
         return id;
-    }
-
-    public void setId (int id) {
-        this.id = id;
     }
 
     public String getName() {

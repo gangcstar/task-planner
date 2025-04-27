@@ -1,5 +1,11 @@
 package example;
 
+import example.model.Epic;
+import example.model.Subtask;
+import example.model.Task;
+import example.service.Taskmanager;
+import example.util.Status;
+
 public class Main {
     public static void main(String[] args) {
         Taskmanager taskmanager = new Taskmanager();

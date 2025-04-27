@@ -1,4 +1,4 @@
-package example;
+package example.util;
 
 public enum Status {
     NEW,

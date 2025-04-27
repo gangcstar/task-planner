@@ -1,4 +1,4 @@
-package example;
+package example.model;
 
 public class Subtask extends Task {
     private int epicId;
