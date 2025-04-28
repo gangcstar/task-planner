@@ -8,14 +8,10 @@ import example.util.Status;
 import java.util.*;
 
 public class Taskmanager {
-    private int idTask = 1;
     private Map<Integer, Task> tasks = new HashMap<>(); //Map<Integer, T>
     private Map<Integer, Epic> epics = new HashMap<>();
     private Map<Integer, Subtask> subtasks = new HashMap<>();
 
-    private int taskId() {
-        return ++idTask;
-    }
 
     public void addTask(Task task) {
         tasks.put(task.getId(), task);
