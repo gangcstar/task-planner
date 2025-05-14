@@ -1,0 +1,94 @@
+package example.service;
+
+import example.model.Epic;
+import example.model.Subtask;
+import example.model.Task;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
+    private final Map<Integer, T> tasks = new HashMap<>();
+
+    @Override
+    public void add(T task) {
+        if (task instanceof Subtask) {
+            Subtask subtask = (Subtask) task;
+            Epic epic = getEpicById(subtask.getEpicId());
+            subtask.setEpic(epic);
+            epic.addSubtask(subtask);
+        }
+
+        tasks.put(task.getId(), task);
+    }
+
+    @Override
+    public void remove(int id) {
+        T task = tasks.get(id);
+        if (task == null) {
+            return;
+        }
+
+        if (task instanceof Epic) {
+            Epic epic = (Epic) task;
+            for (Subtask subtask : epic.getSubtasks()) {
+                subtask.setEpic(null);
+                tasks.remove(subtask.getId());
+            }
+        } else if (task instanceof Subtask) {
+            Subtask subtask = (Subtask) task;
+            Epic epic = getEpicById(subtask.getEpicId());
+            if (epic != null) {
+                epic.removeSubtask(subtask);
+                subtask.setEpic(null);
+            }
+        }
+
+        tasks.remove(id);
+    }
+
+    public List<Task> getAllTasks() {
+        List<Task> result = new ArrayList<>();
+        for (T task : tasks.values()) {
+            if (!(task instanceof Epic) && !(task instanceof Subtask)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
+
+    public List<Epic> getAllEpics() {
+        List<Epic> result = new ArrayList<>();
+        for (T task : tasks.values()) {
+            if (task instanceof Epic) {
+                result.add((Epic) task);
+            }
+        }
+        return result;
+    }
+
+    public List<Subtask> getAllSubtasks() {
+        List<Subtask> result = new ArrayList<>();
+        for (T task : tasks.values()) {
+            if (task instanceof Subtask) {
+                result.add((Subtask) task);
+            }
+        }
+        return result;
+    }
+
+    public List<Subtask> getSubtasksOfEpic(int epicId) {
+        Epic epic = getEpicById(epicId);
+        if (epic == null) {
+            return new ArrayList<>();
+        }
+        return epic.getSubtasks();
+    }
+
+    private Epic getEpicById(int epicId) {
+        T task = tasks.get(epicId);
+        return (task instanceof Epic) ? (Epic) task : null;
+    }
+}

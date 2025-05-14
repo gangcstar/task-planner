@@ -3,12 +3,13 @@ package example;
 import example.model.Epic;
 import example.model.Subtask;
 import example.model.Task;
-import example.service.Taskmanager;
+import example.service.TaskManagerImpl;
 import example.util.Status;
 
 public class Main {
     public static void main(String[] args) {
-        Taskmanager taskmanager = new Taskmanager();
+
+        TaskManagerImpl taskmanager = new TaskManagerImpl();
 
         Task task = new Task("Первая задача", "Описание первой задачи");
         Epic epic = new Epic("Тестовый Эпик", "Описание тестового эпика");
@@ -18,42 +19,19 @@ public class Main {
         Subtask subtask3 = new Subtask("обычная подзадача", "и ее описание", epic2.getId());
 
 
-        taskmanager.addTask(task);
-        taskmanager.addEpic(epic);
-        taskmanager.addSubtask(subtask);
-        taskmanager.addSubtask(subtask2);
-        taskmanager.addEpic(epic2);
-        taskmanager.addSubtask(subtask3);
+        //добавили задачи в менеждер
+        taskmanager.add(task);
+        taskmanager.add(epic);
+        taskmanager.add(subtask);
+        taskmanager.add(subtask2);
 
-        System.out.println("Все задачи:");
-        taskmanager.getAllTasks().forEach(System.out::println);
-
-        System.out.println("Все эпики:");
-        taskmanager.getAllEpics().forEach(System.out::println);
-
-        System.out.println("Все подзадачи:");
-        taskmanager.getAllSubtasks().forEach(System.out::println);
-
-        task.setStatus(Status.IN_PROGRESS);
-        System.out.println(task);
-
-        subtask.setStatus(Status.DONE);
-        taskmanager.updateEpicStatus(epic);
-        System.out.println(epic);
+        System.out.println(taskmanager.getAllSubtasks());
 
         subtask2.setStatus(Status.DONE);
-        taskmanager.updateEpicStatus(epic);
-        System.out.println(subtask);
-        System.out.println(subtask2);
-        System.out.println(epic);
+        subtask.setStatus(Status.DONE);
 
-        taskmanager.removeEpic(epic.getId());
-        System.out.println("Все эпики:");
-        taskmanager.getAllEpics().forEach(System.out::println);
 
-        taskmanager.removeTask(task.getId());
-        System.out.println("Все задачи:");
-        taskmanager.getAllTasks().forEach(System.out::println);
+        System.out.println(taskmanager.getAllSubtasks());
 
 
     }
