@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TaskManagerImpl<T extends Task> implements TaskManager<T> {
+public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private final Map<Integer, T> tasks = new HashMap<>();
 
     @Override
