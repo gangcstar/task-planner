@@ -3,14 +3,16 @@ package example;
 import example.model.Epic;
 import example.model.Subtask;
 import example.model.Task;
-import example.service.TaskManagerImpl;
+import example.service.InMemoryTaskManager;
 import example.util.Status;
 
 public class Main {
     public static void main(String[] args) {
 
-        TaskManagerImpl taskmanager = new TaskManagerImpl();
+        InMemoryTaskManager taskmanager = new InMemoryTaskManager();
 
+
+        //создаем задачи
         Task task = new Task("Первая задача", "Описание первой задачи");
         Epic epic = new Epic("Тестовый Эпик", "Описание тестового эпика");
         Subtask subtask = new Subtask("Подзадача", "Описание подзадачи", epic.getId());
@@ -22,17 +24,35 @@ public class Main {
         //добавили задачи в менеждер
         taskmanager.add(task);
         taskmanager.add(epic);
+        taskmanager.add(epic2);
         taskmanager.add(subtask);
         taskmanager.add(subtask2);
+        taskmanager.add(subtask3);                  // хотел уточнить: задачи в менеджер лучше добавлять списком, или сразу после создания
 
+
+        //печать всех созданных задач
+        System.out.println(taskmanager.getAllTasks());
+        System.out.println(taskmanager.getAllEpics());
         System.out.println(taskmanager.getAllSubtasks());
 
+        //меняем статусы задач
         subtask2.setStatus(Status.DONE);
-        subtask.setStatus(Status.DONE);
+        subtask3.setStatus(Status.IN_PROGRESS);
 
 
-        System.out.println(taskmanager.getAllSubtasks());
+        //вывод эпиков с новыми статусами
+        System.out.println();
+        System.out.println(taskmanager.getAllEpics());
 
+
+        //удаление подзадачи и эпика
+        taskmanager.remove(3);
+        taskmanager.remove(5);
+
+
+        //вывод обновленных задач и эпиков
+        System.out.println();
+        System.out.println(taskmanager.getAllEpics());
 
     }
 
