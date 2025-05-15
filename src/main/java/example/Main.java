@@ -8,7 +8,7 @@ import example.util.Status;
 
 public class Main {
     public static void main(String[] args) {
-
+        //создали менеджер
         InMemoryTaskManager taskmanager = new InMemoryTaskManager();
 
 
@@ -54,6 +54,27 @@ public class Main {
         System.out.println();
         System.out.println(taskmanager.getAllEpics());
 
+
+
+        // ТЕСТЫ ДЛЯ ВТОРОЙ ЧАСТИ
+        System.out.println();
+
+        //получаем задачи по ID
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(7);
+        taskmanager.getTask(1);
+
+        // выводим результат - 10 последних задач
+        System.out.println(taskmanager.getHistory());
     }
 
 }

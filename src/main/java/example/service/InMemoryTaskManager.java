@@ -12,6 +12,8 @@ import java.util.Map;
 public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private final Map<Integer, T> tasks = new HashMap<>();
 
+    private final List<Task> history = new ArrayList<>(10);
+
     @Override
     public void add(T task) {
         if (task instanceof Subtask) {
@@ -47,6 +49,15 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
 
         tasks.remove(id);
+    }
+
+    public T getTask(int id) {
+        if (history.size() > 10) {
+            history.remove(0);
+            history.add(tasks.get(id));
+        }
+        history.add(tasks.get(id));
+        return tasks.get(id);
     }
 
     public List<Task> getAllTasks() {
@@ -85,6 +96,14 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             return new ArrayList<>();
         }
         return epic.getSubtasks();
+    }
+
+    public List<Task> getHistory() {
+        List<Task> result = new ArrayList<>();
+            for (Task task: history) {
+            result.add(task);
+        }
+        return result;
     }
 
     private Epic getEpicById(int epicId) {
