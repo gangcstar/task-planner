@@ -77,8 +77,9 @@ public class Main {
         taskmanager.getTask(7);
         taskmanager.getTask(1);
 
-        // выводим результат - 10 последних задач
-        //System.out.println(TaskManager.getHistory());
+
+        //выводим результат - 10 последних задач
+        System.out.println(taskmanager.getHistory());
 
     }
 
