@@ -16,7 +16,7 @@ public class Subtask extends Task {
     }
 
     public int getEpicId() {
-        return epicId;
+        return epic.getId();
     }
 
     public void setEpic(Epic epic) {
@@ -26,9 +26,7 @@ public class Subtask extends Task {
     @Override
     public void setStatus(Status status) {
         this.status = status;
-        if (epic != null) {
             epic.updateStatus();
-        }
     }
 
     public Epic getEpic() {

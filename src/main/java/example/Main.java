@@ -3,6 +3,8 @@ package example;
 import example.model.Epic;
 import example.model.Subtask;
 import example.model.Task;
+import example.service.HistoryManager;
+import example.service.InMemoryHistoryManager;
 import example.service.InMemoryTaskManager;
 import example.service.TaskManager;
 import example.util.Managers;
@@ -76,7 +78,8 @@ public class Main {
         taskmanager.getTask(1);
 
         // выводим результат - 10 последних задач
-        System.out.println(taskmanager.getHistory());
+        //System.out.println(TaskManager.getHistory());
+
     }
 
 }
