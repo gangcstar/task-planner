@@ -12,6 +12,10 @@ public interface TaskManager<T extends Task> {
 
     void remove(int id);
 
+    void update(int id, T task);
+
+    void removeAllTasks();
+
     List<Task> getAllTasks();
 
     List<Epic> getAllEpics();

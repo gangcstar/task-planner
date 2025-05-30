@@ -18,6 +18,7 @@ public class Main {
 
         //создаем задачи
         Task task = new Task("Первая задача", "Описание первой задачи");
+        Task task2 = new Task("вторая задача", "второе описание");
         Epic epic = new Epic("Тестовый Эпик", "Описание тестового эпика");
         Subtask subtask = new Subtask("Подзадача", "Описание подзадачи", epic.getId());
         Subtask subtask2 = new Subtask("Вторая подзадача", "для эпика", epic.getId());
@@ -27,6 +28,7 @@ public class Main {
 
         //добавили задачи в менеждер
         taskmanager.add(task);
+        taskmanager.add(task2);
         taskmanager.add(epic);
         taskmanager.add(epic2);
         taskmanager.add(subtask);
@@ -81,6 +83,18 @@ public class Main {
         //выводим результат - 10 последних задач
         System.out.println(taskmanager.getHistory());
 
+        System.out.println(taskmanager.getAllTasks());
+        task.setStatus(Status.DONE);
+        task.setName("Новый тест");
+        System.out.println(taskmanager.getAllTasks());
+
+        taskmanager.update(1, task2);
+
+        System.out.println(taskmanager.getAllTasks());
+
+        taskmanager.removeAllTasks();
+
+        System.out.println(taskmanager.getAllEpics());
     }
 
 }

@@ -53,6 +53,11 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         tasks.remove(id);
     }
 
+    @Override
+    public void update(int id, T task) {
+        tasks.put(id, task);
+    }
+
     public T getTask(int id) {
         /*
         if (history.size() > 10) {
@@ -64,6 +69,10 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         historyManager.add(tasks.get(id));
         return tasks.get(id);
 
+    }
+
+    public void removeAllTasks(){
+        tasks.clear();
     }
 
     public List<Task> getAllTasks() {
