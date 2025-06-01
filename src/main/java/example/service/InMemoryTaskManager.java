@@ -3,6 +3,7 @@ package example.service;
 import example.model.Epic;
 import example.model.Subtask;
 import example.model.Task;
+import example.util.Managers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,10 +12,7 @@ import java.util.Map;
 
 public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     private final Map<Integer, T> tasks = new HashMap<>();
-
-    //private final List<Task> history = new ArrayList<>(10);
-
-    InMemoryHistoryManager historyManager = new InMemoryHistoryManager();
+    private final HistoryManager historyManager = Managers.getDefaultHistory();
 
     @Override
     public void add(T task) {
@@ -59,14 +57,9 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     }
 
     public T getTask(int id) {
-        /*
-        if (history.size() > 10) {
-            history.remove(0);
-            history.add(tasks.get(id));
+        if (tasks.get(id) != null) {
+            historyManager.add(tasks.get(id));
         }
-        history.add(tasks.get(id));
-        */
-        historyManager.add(tasks.get(id));
         return tasks.get(id);
 
     }

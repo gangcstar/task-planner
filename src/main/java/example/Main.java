@@ -36,6 +36,7 @@ public class Main {
         taskmanager.add(subtask3);                  // хотел уточнить: задачи в менеджер лучше добавлять списком, или сразу после создания
 
 
+
         //печать всех созданных задач
         System.out.println(taskmanager.getAllTasks());
         System.out.println(taskmanager.getAllEpics());
@@ -66,35 +67,24 @@ public class Main {
         System.out.println();
 
         //получаем задачи по ID
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
-        taskmanager.getTask(7);
+        taskmanager.getTask(8);
+        taskmanager.getTask(8);
+        taskmanager.getTask(8);
+        taskmanager.getTask(8);
+        taskmanager.getTask(8);
+        taskmanager.getTask(8);
+        taskmanager.getTask(4);
+        taskmanager.getTask(8);
+        taskmanager.getTask(8);
+        taskmanager.getTask(8);
+        taskmanager.getTask(8);
         taskmanager.getTask(1);
 
 
         //выводим результат - 10 последних задач
         System.out.println(taskmanager.getHistory());
 
-        System.out.println(taskmanager.getAllTasks());
-        task.setStatus(Status.DONE);
-        task.setName("Новый тест");
-        System.out.println(taskmanager.getAllTasks());
-
-        taskmanager.update(1, task2);
-
-        System.out.println(taskmanager.getAllTasks());
-
-        taskmanager.removeAllTasks();
-
-        System.out.println(taskmanager.getAllEpics());
     }
+
 
 }
