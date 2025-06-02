@@ -19,16 +19,18 @@ public class Main {
         //создаем задачи
         Task task = new Task("Первая задача", "Описание первой задачи");
         Task task2 = new Task("вторая задача", "второе описание");
+        Task task3 = new Task("Третья", "и ее описание");
         Epic epic = new Epic("Тестовый Эпик", "Описание тестового эпика");
-        Subtask subtask = new Subtask("Подзадача", "Описание подзадачи", epic.getId());
-        Subtask subtask2 = new Subtask("Вторая подзадача", "для эпика", epic.getId());
+        Subtask subtask = new Subtask("Подзадача", "Описание подзадачи", epic);
+        Subtask subtask2 = new Subtask("Вторая подзадача", "для эпика", epic);
         Epic epic2 = new Epic("второй тестовый", "в нем будет одна подзадача");
-        Subtask subtask3 = new Subtask("обычная подзадача", "и ее описание", epic2.getId());
+        Subtask subtask3 = new Subtask("обычная подзадача", "и ее описание", epic2);
 
 
         //добавили задачи в менеждер
         taskmanager.add(task);
         taskmanager.add(task2);
+        taskmanager.add(task3);
         taskmanager.add(epic);
         taskmanager.add(epic2);
         taskmanager.add(subtask);
@@ -36,7 +38,7 @@ public class Main {
         taskmanager.add(subtask3);                  // хотел уточнить: задачи в менеджер лучше добавлять списком, или сразу после создания
 
 
-
+/*
         //печать всех созданных задач
         System.out.println(taskmanager.getAllTasks());
         System.out.println(taskmanager.getAllEpics());
@@ -83,6 +85,13 @@ public class Main {
 
         //выводим результат - 10 последних задач
         System.out.println(taskmanager.getHistory());
+*/
+        System.out.println(taskmanager.getAllEpics());
+        subtask.setStatus(Status.DONE);
+        taskmanager.update(8, subtask);
+        epic2.updateStatus();
+        System.out.println(taskmanager.getAllEpics());
+
 
     }
 

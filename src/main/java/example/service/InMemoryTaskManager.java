@@ -5,6 +5,7 @@ import example.model.Subtask;
 import example.model.Task;
 import example.util.Managers;
 
+import java.net.IDN;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +19,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
     public void add(T task) {
         if (task instanceof Subtask) {
             Subtask subtask = (Subtask) task;
-            Epic epic = getEpicById(subtask.getEpicId());
+            Epic epic = getEpicById(subtask.getEpic().getId());
             subtask.setEpic(epic);
             epic.addSubtask(subtask);
         }
@@ -41,7 +42,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
             }
         } else if (task instanceof Subtask) {
             Subtask subtask = (Subtask) task;
-            Epic epic = getEpicById(subtask.getEpicId());
+            Epic epic = getEpicById(subtask.getEpic().getId());
             if (epic != null) {
                 epic.removeSubtask(subtask);
                 subtask.setEpic(null);
@@ -53,6 +54,13 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void update(int id, T task) {
+        if (task instanceof Subtask) {
+            Subtask subtask = (Subtask) task;
+            Epic epic = getEpicById(subtask.getEpic().getId());
+            epic.updateStatus();
+        }
+
+        task.setId(id);
         tasks.put(id, task);
     }
 

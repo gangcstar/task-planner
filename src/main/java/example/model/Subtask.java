@@ -3,20 +3,16 @@ package example.model;
 import example.util.Status;
 
 public class Subtask extends Task {
-    private int epicId;
+    //private int epicId;
     private Epic epic;
 
-    public Subtask(String name, String description, int epicId) {
+    public Subtask(String name, String description, Epic epic) {
         super(name, description);
-        this.epicId = epicId;
+        this.epic = epic;
     }
 
     public Status getStatus() {
         return status;
-    }
-
-    public int getEpicId() {
-        return epicId;
     }
 
     public void setEpic(Epic epic) {
@@ -39,7 +35,7 @@ public class Subtask extends Task {
                 "id = " + id +
                 ", name = " + name +
                 ", description = " + description +
-                ", epicId = " + epicId +
+                ", epicId = " + epic +
                 ", Status = " + status;
     }
 
