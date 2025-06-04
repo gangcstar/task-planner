@@ -35,7 +35,7 @@ public class Subtask extends Task {
                 "id = " + id +
                 ", name = " + name +
                 ", description = " + description +
-                ", epicId = " + epic +
+                ", epic = " + epic.getId() +
                 ", Status = " + status;
     }
 
