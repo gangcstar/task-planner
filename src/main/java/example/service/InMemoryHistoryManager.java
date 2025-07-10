@@ -10,14 +10,20 @@ public class InMemoryHistoryManager implements HistoryManager{
     private static final List<Task> history = new ArrayList<>(10);
 
     public void add(Task task) {
-        if (history.size() == 10) {
-            history.remove(0);
+        if(task == null) {
+
         }
-        history.add(task);
+        else {
+            history.add(task);
+        }
     }
 
     public void remove(int id) {
         history.remove(id);
+    }
+
+    public void removeAll() {
+        history.clear();
     }
 
     @Override

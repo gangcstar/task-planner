@@ -50,6 +50,7 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
         }
 
         tasks.remove(id);
+        historyManager.remove(id);
     }
 
     @Override
@@ -74,6 +75,8 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     public void removeAllTasks(){
         tasks.clear();
+        historyManager.removeAll();
+
     }
 
     public List<Task> getAllTasks() {
