@@ -11,13 +11,21 @@ import example.service.TaskManager;
 import java.util.List;
 
 public class Managers {
+    private static TaskManager taskManager;
+    private static HistoryManager historyManager;
+
     public static TaskManager getDefault() {
-        TaskManager manager = new InMemoryTaskManager();
-        return manager;
+        if(taskManager == null) {
+        taskManager = new InMemoryTaskManager();
+        }
+        return taskManager;
+
     }
 
     public static HistoryManager getDefaultHistory() {
-        HistoryManager historyManager = new InMemoryHistoryManager();
+        if(historyManager == null) {
+            historyManager = new InMemoryHistoryManager();
+        }
         return  historyManager;
     }
 }

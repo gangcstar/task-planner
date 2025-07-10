@@ -54,14 +54,14 @@ public class InMemoryTaskManager<T extends Task> implements TaskManager<T> {
 
     @Override
     public void update(int id, T task) {
-        if (task instanceof Subtask) {
-            Subtask subtask = (Subtask) task;
-            Epic epic = getEpicById(subtask.getEpic().getId());
-            epic.updateStatus();
+        if(tasks.containsKey(id)) {
+            if (task instanceof Subtask) {
+            ((Subtask) task).getEpic().updateSubtask((Subtask) task);
+            }
+            task.setId(id);
+            tasks.put(id, task);
         }
 
-        task.setId(id);
-        tasks.put(id, task);
     }
 
     public T getTask(int id) {

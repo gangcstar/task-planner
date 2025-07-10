@@ -25,6 +25,9 @@ public class Main {
         Subtask subtask2 = new Subtask("Вторая подзадача", "для эпика", epic);
         Epic epic2 = new Epic("второй тестовый", "в нем будет одна подзадача");
         Subtask subtask3 = new Subtask("обычная подзадача", "и ее описание", epic2);
+        Epic epic3 = new Epic("третий", "с подзадачами");
+        Subtask subtask4 = new Subtask("четвертая", "и ее описание", epic3);
+        Subtask subtask5 = new Subtask("пятая", "и ее описание", epic3);
 
 
         //добавили задачи в менеждер
@@ -36,7 +39,9 @@ public class Main {
         taskmanager.add(subtask);
         taskmanager.add(subtask2);
         taskmanager.add(subtask3);                  // хотел уточнить: задачи в менеджер лучше добавлять списком, или сразу после создания
-
+        taskmanager.add(epic3);
+        taskmanager.add(subtask4);
+        taskmanager.add(subtask5);
 
 /*
         //печать всех созданных задач
@@ -86,11 +91,11 @@ public class Main {
         //выводим результат - 10 последних задач
         System.out.println(taskmanager.getHistory());
 */
-        System.out.println(taskmanager.getAllEpics());
+        subtask4.setStatus(Status.IN_PROGRESS);
+        System.out.println(taskmanager.getSubtasksOfEpic(9));
         subtask.setStatus(Status.DONE);
-        taskmanager.update(8, subtask);
-        epic2.updateStatus();
-        System.out.println(taskmanager.getAllEpics());
+        taskmanager.update(1, subtask4);
+        System.out.println(taskmanager.getSubtasksOfEpic(9));
 
 
     }

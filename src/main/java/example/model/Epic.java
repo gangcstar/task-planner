@@ -17,6 +17,15 @@ public class Epic extends Task {
         return new ArrayList<>(subtasks);
     }
 
+    public void updateSubtask(Subtask subtask) {
+        for (int i = 0; i < subtasks.size(); i++) {
+            if(subtasks.get(i).getId() == subtask.getId()) {
+                Subtask currentSubtask = subtasks.get(i);
+                currentSubtask.setName(subtask.getName());
+            }
+        }
+    }
+
     public void addSubtask(Subtask subtask) {
         subtasks.add(subtask);
         updateStatus();
